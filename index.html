@@ -122,6 +122,132 @@ body{
 
 }
 
+/* TIME BAR */
+
+.time-bar{
+
+    position:absolute;
+
+    top:11%;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:88%;
+
+    max-width:430px;
+
+    height:12px;
+
+    z-index:15;
+
+    background:rgba(255,255,255,0.5);
+
+    border:1px solid rgba(0,0,0,0.08);
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
+
+    box-shadow:
+
+    inset 0 1px 2px rgba(255,255,255,0.8),
+
+    0 4px 12px rgba(0,0,0,0.06);
+
+    opacity:0;
+
+    animation:fadeBar 1s ease forwards;
+
+    animation-delay:3.2s;
+
+}
+
+/* LIQUIDO */
+
+.time-liquid{
+
+    width:0%;
+
+    height:100%;
+
+    border-radius:999px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:linear-gradient(
+
+        90deg,
+
+        #000000 0%,
+
+        #2d2d2d 35%,
+
+        #6b6b6b 70%,
+
+        #ffffff 100%
+
+    );
+
+    box-shadow:
+
+    0 0 12px rgba(0,0,0,0.15),
+
+    0 0 24px rgba(255,255,255,0.5);
+
+    transition:width 1s linear;
+
+}
+
+/* EFFETTO MOVIMENTO */
+
+.time-liquid::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+
+        120deg,
+
+        transparent 0%,
+
+        rgba(255,255,255,0.45) 50%,
+
+        transparent 100%
+
+    );
+
+    animation:liquidFlow 2s linear infinite;
+
+}
+
+@keyframes liquidFlow{
+
+    0%{
+
+        transform:translateX(-100%);
+
+    }
+
+    100%{
+
+        transform:translateX(100%);
+
+    }
+
+}
+
 /* FRAME */
 
 .game-frame{
@@ -594,6 +720,16 @@ body{
 
 }
 
+@keyframes fadeBar{
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
 </style>
 
 </head>
@@ -617,6 +753,14 @@ body{
     <img src="ONECLUB.png" class="oneclub">
 
     <!-- GIOCO -->
+
+    <!-- TIME LIQUID BAR -->
+
+<div class="time-bar">
+
+    <div class="time-liquid"></div>
+
+</div>
 
     <div class="game-frame">
 
@@ -650,73 +794,109 @@ body{
 
     <div class="info-text">
 
-        ONEGAME è un progetto informatico nato con l’obiettivo di trasformare il tempo trascorso nei videogiochi in un’opportunità concreta di supporto umano e sociale.
+    ONEGAME is a digital gaming project created with a simple but powerful vision:
 
-        Il progetto prevede la destinazione del 30% degli utili generati dall’azienda a cause umanitarie internazionali.
+    transforming playtime into real-world human support.
 
-        Nella fase iniziale, le donazioni saranno rivolte ad alcune tra le più importanti organizzazioni umanitarie mondiali:
+    Our mission is to turn every minute spent inside a game into a small opportunity
 
-        <br><br>
+    to help people facing difficult living conditions around the world.
 
-        • UNICEF<br>
+    <br><br>
 
-        • Save The Children<br>
+    ONEGAME plans to dedicate 30% of the company’s future profits
 
-        • Oxfam<br>
+    to international humanitarian causes and social support initiatives.
 
-        • Médecins Sans Frontières<br>
+    During the first phase of the project, donations will support some of the world’s
 
-        • Habitat For Humanity<br>
+    most recognized humanitarian organizations:
 
-        • WWF
+    <br><br>
 
-        <br><br>
+    • UNICEF<br>
 
-        <img src="Associazioni.png" class="info-logo">
+    • Save The Children<br>
 
-        <br><br>
+    • Oxfam<br>
 
-        Tutte le donazioni verranno rese pubbliche attraverso la pagina ufficiale Instagram di ONEGAME, dove saranno condivisi aggiornamenti, sondaggi pubblici e prove delle donazioni effettuate.
+    • Médecins Sans Frontières<br>
 
-        La community avrà un ruolo attivo nella scelta della distribuzione delle percentuali tra le varie organizzazioni.
+    • Habitat For Humanity<br>
 
-        <br><br>
+    • WWF
 
-         <img src="Instagram.png" class="info-logo">
+    <br><br>
 
-         <br><br>
+    <img src="Associazioni.png" class="info-logo">
 
-        L’obiettivo futuro di ONEGAME è contribuire alla realizzazione di abitazioni prefabbricate e strutture di supporto in aree del mondo colpite da gravi difficoltà economiche e sociali.
+    <br><br>
 
-        Tra le realtà che il progetto desidera sostenere:
+    Every donation will be shared publicly through ONEGAME’s official Instagram page,
 
-        <br><br>
+    where the community will be able to follow updates, view donation proofs,
 
-        • Africa — Burundi, Sud Sudan, Sahel<br>
+    and participate in public polls regarding future support distributions.
 
-        • India — Bihar, Uttar Pradesh<br>
+    The community itself will play an active role in deciding
 
-        • America — West Virginia, Rust Belt<br>
+    how percentages are allocated between organizations.
 
-        • Europa — Romania, Bulgaria, Grecia
+    <br><br>
 
-        <br><br>
+    <img src="Instagram.png" class="info-logo">
 
-        <img src="Mappa.png" class="info-logo">
+    <br><br>
 
-          <br><br>
+    The long-term vision of ONEGAME is far bigger than gaming.
 
-        ONEGAME non richiede alcun contributo economico agli utenti.
+    The project aims to contribute to the future development of
 
-        Le entrate vengono generate esclusivamente tramite banner pubblicitari discreti e non invasivi presenti nella schermata principale dei giochi.
+    prefab homes, support structures, and humanitarian assistance
 
-        Ogni minuto trascorso all’interno dei giochi rappresenta una piccola opportunità concreta per aiutare chi vive in condizioni difficili.
+    in regions affected by severe economic and social difficulties.
 
-        <br><br>
+    Some of the areas ONEGAME hopes to support include:
 
-        Grazie per essere parte di ONEGAME ♥️🎮
+    <br><br>
 
-    </div>
+    • Africa — Burundi, South Sudan, Sahel<br>
+
+    • India — Bihar, Uttar Pradesh<br>
+
+    • America — West Virginia, Rust Belt<br>
+
+    • Europe — Romania, Bulgaria, Greece
+
+    <br><br>
+
+    <img src="Mappa.png" class="info-logo">
+
+    <br><br>
+
+    ONEGAME does not require any financial contribution from users.
+
+    Revenue is generated exclusively through discreet,
+
+    non-invasive advertisements displayed inside the gaming platform.
+
+    No subscriptions.
+
+    No mandatory purchases.
+
+    Just play.
+
+    <br><br>
+
+    Every game session becomes a small chance
+
+    to create something positive for someone else.
+
+    <br><br>
+
+    Thank you for being part of ONEGAME ♥️🎮
+
+</div>
 
 </div>
 
@@ -775,6 +955,36 @@ let anim = null;
 let targetHits = 10;
 
 let hits = 0;
+
+/* ---------------- TIME BAR ---------------- */
+
+const timeLiquid = document.querySelector(".time-liquid");
+
+/* 1 ORA = 3600000 ms */
+
+const totalTime = 3600000;
+
+let startTime = Date.now();
+
+function updateTimeBar(){
+
+    const elapsed = Date.now() - startTime;
+
+    let progress = (elapsed / totalTime) * 100;
+
+    if(progress > 100){
+
+        progress = 100;
+
+    }
+
+    timeLiquid.style.width = progress + "%";
+
+    requestAnimationFrame(updateTimeBar);
+
+}
+
+updateTimeBar();
 
 /* ---------------- SCORE ---------------- */
 
@@ -922,9 +1132,9 @@ paddle.style.transform = "none";
 
     ballY = 100;
 
-    ballVX = 7;
+    ballVX = 4;
 
-    ballVY = 7;
+    ballVY = 4;
 
     let canScore = true;
 
@@ -1032,20 +1242,43 @@ paddle.style.transform = "none";
 
         }
 
-        // RESET BALL
-
         if(ballY > maxH){
 
-            ballX = 100;
+    // RESET SCORE
 
-            ballY = 100;
+    score = 0;
 
-            ballVX = 7;
+    hits = 0;
 
-            ballVY = 7;
+    updateScore();
 
-        }
+    // EFFETTO VISIVO
 
+    scoreText.style.transform = "scale(1.25)";
+
+    scoreText.style.color = "red";
+
+    setTimeout(() => {
+
+        scoreText.style.transform = "scale(1)";
+
+        scoreText.style.color = "black";
+
+    }, 200);
+
+    // RESET BALL
+
+    ballX = 100;
+
+    ballY = 100;
+
+    // VELOCITÀ
+
+    ballVX = 4;
+
+    ballVY = 4;
+
+}
         // DRAW
 
         ball.style.left = ballX + "px";
@@ -1129,6 +1362,8 @@ function startSystem(){
     score = 0;
 
     hits = 0;
+
+    startTime = Date.now();
 
     updateScore();
 
