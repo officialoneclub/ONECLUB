@@ -122,25 +122,77 @@ body{
 
 }
 
-/* TIME BAR */
+/* TOP WRAPPER */
 
-.time-bar{
+.time-wrapper{
 
     position:absolute;
 
-    top:11%;
+    top:10.5%;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    width:88%;
+    width:72%;
 
-    max-width:430px;
+    max-width:320px;
 
-    height:12px;
+    display:flex;
 
-    z-index:15;
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    z-index:20;
+
+    opacity:0;
+
+    animation:fadeBar 1s ease forwards;
+
+    animation-delay:3.2s;
+
+}
+
+/* LOGO LEFT */
+
+.time-logo{
+
+    width:24px;
+
+    height:24px;
+
+    object-fit:contain;
+
+    filter:drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+
+}
+
+/* HOME RIGHT */
+
+.time-home{
+
+    font-size:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    filter:drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+
+}
+
+/* BAR */
+
+.time-bar{
+
+    flex:1;
+
+    height:10px;
 
     background:rgba(255,255,255,0.5);
 
@@ -159,12 +211,6 @@ body{
     inset 0 1px 2px rgba(255,255,255,0.8),
 
     0 4px 12px rgba(0,0,0,0.06);
-
-    opacity:0;
-
-    animation:fadeBar 1s ease forwards;
-
-    animation-delay:3.2s;
 
 }
 
@@ -200,9 +246,35 @@ body{
 
     0 0 12px rgba(0,0,0,0.15),
 
-    0 0 24px rgba(255,255,255,0.5);
+    0 0 24px rgba(255,255,255,0.45);
 
     transition:width 1s linear;
+
+}
+
+/* MOVIMENTO LIQUIDO */
+
+.time-liquid::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+
+        120deg,
+
+        transparent 0%,
+
+        rgba(255,255,255,0.45) 50%,
+
+        transparent 100%
+
+    );
+
+    animation:liquidFlow 2s linear infinite;
 
 }
 
@@ -756,9 +828,25 @@ body{
 
     <!-- TIME LIQUID BAR -->
 
-<div class="time-bar">
+<!-- TOP TIME AREA -->
 
-    <div class="time-liquid"></div>
+<div class="time-wrapper">
+
+    <!-- LOGO LEFT -->
+
+    <img src="logo.png" class="time-logo">
+
+    <!-- BAR -->
+
+    <div class="time-bar">
+
+        <div class="time-liquid"></div>
+
+    </div>
+
+    <!-- HOME RIGHT -->
+
+    <div class="time-home">🏠</div>
 
 </div>
 
@@ -786,7 +874,7 @@ body{
 
     <div class="info-home-btn" id="infoHomeBtn">
 
-    Torna alla Home
+    Back to Home
 
 </div>
 
