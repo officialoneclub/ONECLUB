@@ -548,6 +548,72 @@ body{
 
 }
 
+/* LANGUAGE BUTTON */
+
+.lang-btn{
+
+    width:70px;
+
+    height:56px;
+
+    margin:10px auto 18px auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(255,255,255,0.75);
+
+    border:1px solid rgba(0,0,0,0.08);
+
+    border-radius:22px;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    transition:0.25s ease;
+
+    box-shadow:
+
+    0 10px 25px rgba(0,0,0,0.08),
+
+    inset 0 1px 1px rgba(255,255,255,0.9);
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+}
+
+.lang-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.lang-btn:active{
+
+    transform:scale(0.96);
+
+}
+
+/* FLAG IMAGE */
+
+.flag-icon{
+
+    width:34px;
+
+    height:34px;
+
+    object-fit:contain;
+
+    pointer-events:none;
+
+}
+
 /* SCROLLBAR FUTURISTICA */
 
 .info-page::-webkit-scrollbar{
@@ -872,6 +938,12 @@ body{
 
     <img src="ONECLUB.png" class="info-logo">
 
+<div class="lang-btn" id="italyBtn">
+
+    <img src="bandiera.png" class="flag-icon">
+
+</div>
+
     <div class="info-home-btn" id="infoHomeBtn">
 
     Back to Home
@@ -985,6 +1057,120 @@ body{
     Thank you for being part of ONEGAME ♥️🎮
 
 </div>
+
+</div>
+
+<!-- ITALIAN PAGE -->
+
+<div class="info-page" id="italyPage">
+
+    <div class="info-title">
+
+        <img src="ONECLUB.png" class="info-logo" />
+
+        <div class="info-home-btn" id="italyBackBtn">
+
+            Back
+
+        </div>
+
+    </div>
+
+    <div class="info-text">
+
+        ONEGAME è un progetto digitale gaming creato con una visione semplice ma potente:trasformare il tempo di gioco in supporto umano reale.
+
+         La nostra missione è trasformare ogni minuto trascorso nel gioco
+
+        in una piccola opportunità per aiutare persone che vivono
+
+        in condizioni difficili nel mondo.
+
+        <br><br>
+
+        ONEGAME prevede di destinare il 30% dei futuri profitti
+
+        a cause umanitarie internazionali e iniziative sociali.
+
+        Durante la prima fase del progetto, le donazioni sosterranno:
+
+        <br /><br />
+
+        • UNICEF<br />
+
+        • Save The Children<br />
+
+        • Oxfam<br />
+
+        • Médecins Sans Frontières<br />
+
+        • Habitat For Humanity<br />
+
+        • WWF
+
+        <br /><br />
+
+        <img src="Associazioni.png" class="info-logo" />
+
+        <br /><br />
+
+        Ogni donazione verrà condivisa pubblicamente
+
+        attraverso la pagina Instagram ufficiale di ONEGAME.
+
+        La community potrà seguire aggiornamenti,
+
+        verificare le donazioni e partecipare ai sondaggi pubblici.
+
+        <br /><br />
+
+        <img src="Instagram.png" class="info-logo" />
+
+        <br /><br />
+
+        La visione a lungo termine di ONEGAME va oltre il gaming.
+
+        Il progetto punta a contribuire allo sviluppo futuro di:
+
+        <br /><br />
+
+        • Case prefabbricate<br />
+
+        • Strutture di supporto<br />
+
+        • Assistenza umanitaria
+
+        <br /><br />
+
+        nelle regioni colpite da gravi difficoltà economiche e sociali.
+
+        <br /><br />
+
+        <img src="Mappa.png" class="info-logo" />
+
+        <br /><br />
+
+        ONEGAME non richiede alcun contributo economico agli utenti.
+
+        <br /><br />
+
+        I ricavi verranno generati esclusivamente
+
+        tramite pubblicità discrete e non invasive.
+
+        <br /><br />
+
+        Nessun abbonamento.<br />
+
+        Nessun acquisto obbligatorio.<br />
+
+        Basta giocare.
+
+        <br /><br />
+
+        Grazie per far parte di ONEGAME ♥️🎮
+
+    </div>
 
 </div>
 
@@ -1479,6 +1665,12 @@ const infoPage = document.getElementById("infoPage");
 
 const infoHomeBtn = document.getElementById("infoHomeBtn");
 
+const italyBtn = document.getElementById("italyBtn");
+
+const italyPage = document.getElementById("italyPage");
+
+const italyBackBtn = document.getElementById("italyBackBtn");
+
 // HOME
 
 homeBtn.onclick = () => {
@@ -1507,6 +1699,25 @@ infoHomeBtn.onclick = () => {
 
 };
 
+// OPEN ITALIAN PAGE
+
+italyBtn.onclick = () => {
+
+    infoPage.style.display = "none";
+
+    italyPage.style.display = "block";
+
+};
+
+// BACK TO INFO PAGE
+
+italyBackBtn.onclick = () => {
+
+    italyPage.style.display = "none";
+
+    infoPage.style.display = "block";
+
+};
 
 startSystem();
 
