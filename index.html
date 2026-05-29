@@ -492,6 +492,110 @@ body{
 
 }
 
+/* LEGAL SECTION */
+
+.legal-section{
+
+    margin-top:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/* CARD */
+
+.legal-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,0.72);
+
+    border:1px solid rgba(255,255,255,0.7);
+
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,0.05),
+
+    inset 0 1px 1px rgba(255,255,255,0.7);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    transition:0.25s ease;
+
+    cursor:pointer;
+
+}
+
+/* HOVER */
+
+.legal-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/* TESTI */
+
+.legal-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.legal-title{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:black;
+
+}
+
+.legal-sub{
+
+    font-size:13px;
+
+    color:#555;
+
+    line-height:1.5;
+
+}
+
+/* LOGO */
+
+.legal-logo{
+
+    width:52px;
+
+    height:52px;
+
+    object-fit:contain;
+
+    opacity:0.95;
+
+    filter:drop-shadow(0 4px 10px rgba(0,0,0,0.08));
+
+}
+
 /* BOTTONE */
 
 .info-home-btn{
@@ -1056,6 +1160,110 @@ body{
 
     Thank you for being part of ONEGAME ♥️🎮
 
+    <br><br>
+
+<!-- LEGAL SECTION -->
+
+<div class="legal-section">
+
+    <!-- PRIVACY -->
+
+    <div class="legal-card" id="privacyBtn">
+
+        <div class="legal-left">
+
+            <div class="legal-title">
+
+                Privacy Policy
+
+            </div>
+
+            <div class="legal-sub">
+
+                Learn how ONEGAME protects and manages user data.
+
+            </div>
+
+        </div>
+
+        <img src="logo.png" class="legal-logo">
+
+    </div>
+
+    <!-- COOKIE -->
+
+    <div class="legal-card">
+
+        <div class="legal-left">
+
+            <div class="legal-title">
+
+                Cookie Policy
+
+            </div>
+
+            <div class="legal-sub">
+
+                Information about cookies and advertising technologies.
+
+            </div>
+
+        </div>
+
+        <img src="logo.png" class="legal-logo">
+
+    </div>
+
+    <!-- TERMS -->
+
+    <div class="legal-card">
+
+        <div class="legal-left">
+
+            <div class="legal-title">
+
+                Terms & Conditions
+
+            </div>
+
+            <div class="legal-sub">
+
+                Rules, terms and conditions for using ONEGAME.
+
+            </div>
+
+        </div>
+
+        <img src="logo.png" class="legal-logo">
+
+    </div>
+
+    <!-- CONTACT -->
+
+    <div class="legal-card">
+
+        <div class="legal-left">
+
+            <div class="legal-title">
+
+                Contact Page
+
+            </div>
+
+            <div class="legal-sub">
+
+                Contact the ONEGAME team for support or collaborations.
+
+            </div>
+
+        </div>
+
+        <img src="logo.png" class="legal-logo">
+
+    </div>
+
+</div>
+
 </div>
 
 </div>
@@ -1169,6 +1377,68 @@ body{
         <br /><br />
 
         Grazie per far parte di ONEGAME ♥️🎮
+
+    </div>
+
+</div>
+
+<!-- PRIVACY PAGE -->
+
+<div class="info-page" id="privacyPage">
+
+    <div class="info-title">
+
+        <img src="ONECLUB.png" class="info-logo">
+
+        <div class="info-home-btn" id="privacyBackBtn">
+
+            Back
+
+        </div>
+
+    </div>
+
+    <div class="info-text">
+
+        <b>Privacy Policy</b>
+
+        <br><br>
+
+        ONEGAME respects and protects user privacy.
+
+        This page explains how information may be collected,
+
+        used and protected while using the platform.
+
+        <br><br>
+
+        ONEGAME does not sell personal information to third parties.
+
+        The platform may use anonymous analytics technologies
+
+        to improve performance, stability and user experience.
+
+        <br><br>
+
+        Advertising partners may use cookies or similar technologies
+
+        to display non-invasive advertisements inside the platform.
+
+        <br><br>
+
+        No sensitive personal data is intentionally collected.
+
+        Users can stop using the platform at any time.
+
+        <br><br>
+
+        Future updates to the Privacy Policy may be published
+
+        directly inside the ONEGAME application.
+
+        <br><br>
+
+        Thank you for trusting ONEGAME ♥️
 
     </div>
 
@@ -1691,11 +1961,15 @@ function startDodgeGame(){
 
     let playerX = container.clientWidth / 2;
 
-    function resetObstacle(){
+function resetObstacle(addPoint = true){
 
-        obstacleX = Math.random() * (container.clientWidth - 45);
+    obstacleX = Math.random() * (container.clientWidth - 45);
 
-        obstacleY = 0;
+    obstacleY = 0;
+
+    // AGGIUNGI PUNTO SOLO SE NON HAI PERSO
+
+    if(addPoint){
 
         hits++;
 
@@ -1703,17 +1977,21 @@ function startDodgeGame(){
 
         updateScore();
 
-        if(hits >= targetHits){
+    }
 
-            setTimeout(() => {
+    // PASSA AL GIOCO SUCCESSIVO
 
-                nextGame();
+    if(hits >= targetHits){
 
-            }, 400);
+        setTimeout(() => {
 
-        }
+            nextGame();
+
+        }, 400);
 
     }
+
+}
 
     function loop(){
 
@@ -1739,13 +2017,31 @@ function startDodgeGame(){
 
 ){
 
+    // RESET SCORE
+
     score = 0;
 
     hits = 0;
 
     updateScore();
 
-    resetObstacle();
+    // ANIMAZIONE ERRORE
+
+    scoreText.style.transform = "scale(1.25)";
+
+    scoreText.style.color = "red";
+
+    setTimeout(() => {
+
+        scoreText.style.transform = "scale(1)";
+
+        scoreText.style.color = "black";
+
+    }, 200);
+
+    // RESET OSTACOLO
+
+    resetObstacle(false);
 
 }
 
@@ -1803,25 +2099,37 @@ function startDodgeGame(){
 
 /* ---------------- GAME 4 ---------------- */
 
-function startMemoryGame(){
+function startMemoryGame(resetHits = true){
 
     cleanup();
 
-    hits = 0;
+    if(resetHits){
 
-    const size = 80;
+        hits = 0;
 
-    const positions = [
+    }
 
-        [40,40],
+   const size = 80;
 
-        [180,40],
+const gap = 60;
 
-        [40,180],
+// CALCOLA POSIZIONE CENTRATA
 
-        [180,180]
+const totalWidth = (size * 2) + gap;
 
-    ];
+const startX = (container.clientWidth - totalWidth) / 2;
+
+const positions = [
+
+    [startX, 40],
+
+    [startX + size + gap, 40],
+
+    [startX, 180],
+
+    [startX + size + gap, 180]
+
+];
 
     correctBox = Math.floor(Math.random() * 4);
 
@@ -1883,17 +2191,33 @@ function startMemoryGame(){
 
 }else{
 
-    startMemoryGame();
+    startMemoryGame(false);
 
 }
 
-            }else{
+           }else{
+
+    // RESET SCORE
 
     score = 0;
 
     hits = 0;
 
     updateScore();
+
+    // ANIMAZIONE ERRORE
+
+    scoreText.style.transform = "scale(1.25)";
+
+    scoreText.style.color = "red";
+
+    setTimeout(() => {
+
+        scoreText.style.transform = "scale(1)";
+
+        scoreText.style.color = "black";
+
+    }, 200);
 
 }
 
@@ -1977,6 +2301,12 @@ const italyPage = document.getElementById("italyPage");
 
 const italyBackBtn = document.getElementById("italyBackBtn");
 
+const privacyBtn = document.getElementById("privacyBtn");
+
+const privacyPage = document.getElementById("privacyPage");
+
+const privacyBackBtn = document.getElementById("privacyBackBtn");
+
 // HOME
 
 homeBtn.onclick = () => {
@@ -2012,6 +2342,24 @@ italyBtn.onclick = () => {
     infoPage.style.display = "none";
 
     italyPage.style.display = "block";
+
+};
+
+/* PRIVACY PAGE */
+
+privacyBtn.onclick = () => {
+
+    infoPage.style.display = "none";
+
+    privacyPage.style.display = "block";
+
+};
+
+privacyBackBtn.onclick = () => {
+
+    privacyPage.style.display = "none";
+
+    infoPage.style.display = "block";
 
 };
 
