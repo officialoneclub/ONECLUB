@@ -1230,6 +1230,14 @@ let targetHits = 10;
 
 let hits = 0;
 
+let dodgePlayer = null;
+
+let dodgeObstacle = null;
+
+let memoryBoxes = [];
+
+let correctBox = 0;
+
 /* ---------------- TIME BAR ---------------- */
 
 const timeLiquid = document.querySelector(".time-liquid");
@@ -1280,6 +1288,8 @@ function cleanup(){
 
     container.onmousemove = null;
 
+    container.ontouchmove = null;
+
     if(ball){
 
         ball.remove();
@@ -1295,6 +1305,26 @@ function cleanup(){
         paddle = null;
 
     }
+
+    if(dodgePlayer){
+
+        dodgePlayer.remove();
+
+        dodgePlayer = null;
+
+    }
+
+    if(dodgeObstacle){
+
+        dodgeObstacle.remove();
+
+        dodgeObstacle = null;
+
+    }
+
+    memoryBoxes.forEach(box => box.remove());
+
+    memoryBoxes = [];
 
 }
 
@@ -1611,19 +1641,295 @@ container.ontouchmove = (e) => {
 
 }
 
+/* ---------------- GAME 3 ---------------- */
+
+function startDodgeGame(){
+
+    cleanup();
+
+    hits = 0;
+
+    dodgePlayer = document.createElement("div");
+
+    dodgePlayer.style.position = "absolute";
+
+    dodgePlayer.style.width = "55px";
+
+    dodgePlayer.style.height = "55px";
+
+    dodgePlayer.style.background = "black";
+
+    dodgePlayer.style.borderRadius = "18px";
+
+    dodgePlayer.style.bottom = "20px";
+
+    dodgePlayer.style.left = "50%";
+
+    dodgePlayer.style.transform = "translateX(-50%)";
+
+    container.appendChild(dodgePlayer);
+
+    dodgeObstacle = document.createElement("div");
+
+    dodgeObstacle.style.position = "absolute";
+
+    dodgeObstacle.style.width = "45px";
+
+    dodgeObstacle.style.height = "45px";
+
+    dodgeObstacle.style.background = "red";
+
+    dodgeObstacle.style.borderRadius = "50%";
+
+    dodgeObstacle.style.top = "0px";
+
+    container.appendChild(dodgeObstacle);
+
+    let obstacleX = Math.random() * (container.clientWidth - 45);
+
+    let obstacleY = 0;
+
+    let playerX = container.clientWidth / 2;
+
+    function resetObstacle(){
+
+        obstacleX = Math.random() * (container.clientWidth - 45);
+
+        obstacleY = 0;
+
+        hits++;
+
+        score++;
+
+        updateScore();
+
+        if(hits >= targetHits){
+
+            setTimeout(() => {
+
+                nextGame();
+
+            }, 400);
+
+        }
+
+    }
+
+    function loop(){
+
+        obstacleY += 5;
+
+        dodgeObstacle.style.left = obstacleX + "px";
+
+        dodgeObstacle.style.top = obstacleY + "px";
+
+        const playerRect = dodgePlayer.getBoundingClientRect();
+
+        const obstacleRect = dodgeObstacle.getBoundingClientRect();
+
+        if(
+
+    obstacleRect.left < playerRect.right &&
+
+    obstacleRect.right > playerRect.left &&
+
+    obstacleRect.top < playerRect.bottom &&
+
+    obstacleRect.bottom > playerRect.top
+
+){
+
+    score = 0;
+
+    hits = 0;
+
+    updateScore();
+
+    resetObstacle();
+
+}
+
+        if(obstacleY > container.clientHeight){
+
+            resetObstacle();
+
+        }
+
+        anim = requestAnimationFrame(loop);
+
+    }
+
+    loop();
+
+    function movePlayer(clientX){
+
+        const rect = container.getBoundingClientRect();
+
+        playerX = clientX - rect.left - 27;
+
+        if(playerX < 0){
+
+            playerX = 0;
+
+        }
+
+        if(playerX > rect.width - 55){
+
+            playerX = rect.width - 55;
+
+        }
+
+        dodgePlayer.style.left = playerX + "px";
+
+        dodgePlayer.style.transform = "none";
+
+    }
+
+    container.onmousemove = (e) => {
+
+        movePlayer(e.clientX);
+
+    };
+
+    container.ontouchmove = (e) => {
+
+        e.preventDefault();
+
+        movePlayer(e.touches[0].clientX);
+
+    };
+
+}
+
+/* ---------------- GAME 4 ---------------- */
+
+function startMemoryGame(){
+
+    cleanup();
+
+    hits = 0;
+
+    const size = 80;
+
+    const positions = [
+
+        [40,40],
+
+        [180,40],
+
+        [40,180],
+
+        [180,180]
+
+    ];
+
+    correctBox = Math.floor(Math.random() * 4);
+
+    for(let i = 0; i < 4; i++){
+
+        const memoryBox = document.createElement("div");
+
+        memoryBox.style.position = "absolute";
+
+        memoryBox.style.width = size + "px";
+
+        memoryBox.style.height = size + "px";
+
+        memoryBox.style.borderRadius = "18px";
+
+        memoryBox.style.background = i === correctBox ? "black" : "#d9d9d9";
+
+        memoryBox.style.left = positions[i][0] + "px";
+
+        memoryBox.style.top = positions[i][1] + "px";
+
+        memoryBox.style.transition = "0.2s";
+
+        container.appendChild(memoryBox);
+
+        memoryBoxes.push(memoryBox);
+
+    }
+
+    setTimeout(() => {
+
+        memoryBoxes.forEach(box => {
+
+            box.style.background = "#d9d9d9";
+
+        });
+
+    }, 1000);
+
+    memoryBoxes.forEach((memoryBox, index) => {
+
+        memoryBox.onclick = () => {
+
+            if(index === correctBox){
+
+                score++;
+
+                hits++;
+
+                updateScore();
+
+              if(hits >= targetHits){
+
+    setTimeout(() => {
+
+        nextGame();
+
+    }, 300);
+
+}else{
+
+    startMemoryGame();
+
+}
+
+            }else{
+
+    score = 0;
+
+    hits = 0;
+
+    updateScore();
+
+}
+
+        };
+
+    });
+
+} 
+
 /* ---------------- SWITCH ---------------- */
 
 function nextGame(){
 
-    currentGame = (currentGame + 1) % 2;
+    currentGame = (currentGame + 1) % 4;
 
     if(currentGame === 0){
 
         startClickGame();
 
-    }else{
+    }
+
+    else if(currentGame === 1){
 
         startPongGame();
+
+    }
+
+    else if(currentGame === 2){
+
+        startDodgeGame();
+
+    }
+
+    else if(currentGame === 3){
+
+        startMemoryGame();
 
     }
 
